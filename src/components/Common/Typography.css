@@ -1,0 +1,70 @@
+/* FONT */
+.typo-main-font {
+  font-family: "Inter", "Arial", sans-serif;
+}
+
+/* TITLE */
+.typo-title {
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.typo-title_size_xl {
+  font-size: 50px;
+  font-weight: 400;
+}
+
+/* TEXT */
+.typo-text {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.typo-text_size_s {
+  font-size: 13px;
+  font-weight: 400;
+}
+
+/* HEADER LINK */
+.typo-header-link {
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.typo-header-link_size_l {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.typo-header-link_size_s {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* PROMO LINK */
+.typo-promo-link {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* SIDE MENU LINK */
+.typo-side-menu-link {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 990px) {
+  .typo-title_size_xl {
+    font-size: 40px;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .typo-title_size_xl {
+    font-size: 30px;
+  }
+
+  .typo-header-link_size_s {
+    font-size: 10px;
+  }
+}

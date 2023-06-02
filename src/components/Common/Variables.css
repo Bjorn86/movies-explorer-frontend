@@ -1,0 +1,16 @@
+:root {
+  --text-white: #ffffff;
+  --text-grey: #8b8b8b;
+  --text-black: #000000;
+  --block-bg-color-main: #303030;
+  --block-bg-color-accent: #3ddc84;
+  --block-border-grey-opacity: rgba(170, 170, 170, 0.2);
+  --block-border-white-opacity: rgba(255, 255, 255, 0.5);
+  --divider-bg-color-dark-grey: #424242;
+  --divider-bg-color-light-grey: #dadada;
+  --bg-color-main: #202020;
+  --bg-color-accent: #272727;
+  --bg-color-hero: #073042;
+  --bg-color-overlay-opacity: rgba(0, 0, 0, 0.3);
+  --opacity: opacity 0.5s;
+}

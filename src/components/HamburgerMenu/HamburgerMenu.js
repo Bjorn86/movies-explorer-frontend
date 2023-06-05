@@ -1,9 +1,10 @@
-// IMPORT COMPONENTS
-import AccountLink from "../AccountLink/AccountLink";
-import Navigation from "../Navigation/Navigation";
+// IMPORT STYLES
+import "./HamburgerMenu.css";
 
 // IMPORT COMPONENTS
 import Overlay from "../Overlay/Overlay";
+import AccountLink from "../AccountLink/AccountLink";
+import Navigation from "../Navigation/Navigation";
 
 // HAMBURGER MENU COMPONENT
 function HamburgerMenu({ isSideMenuOpen, onCloseClick }) {

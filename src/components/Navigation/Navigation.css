@@ -20,6 +20,9 @@
 }
 
 .navigation__link {
+  font-family: var(--main-font);
+  font-size: 13px;
+  font-weight: 400;
   line-height: 1.38;
   text-decoration: none;
   color: var(--text-white);
@@ -27,6 +30,8 @@
 }
 
 .navigation__link_place_side-menu {
+  font-size: 18px;
+  font-weight: 500;
   padding-bottom: 4px;
   line-height: 1.22;
 }

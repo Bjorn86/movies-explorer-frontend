@@ -1,6 +1,9 @@
 // IMPORT PACKAGES
 import { Link } from "react-router-dom";
 
+// IMPORT STYLES
+import "./Navigation.css";
+
 // NAVIGATION COMPONENT
 function Navigation({ isSideMenu }) {
   return (
@@ -17,10 +20,8 @@ function Navigation({ isSideMenu }) {
         >
           <Link
             to="/"
-            className={`navigation__link typo-main-font ${
-              isSideMenu
-                ? "navigation__link_place_side-menu typo-side-menu-link"
-                : "typo-header-link"
+            className={`navigation__link ${
+              isSideMenu ? "navigation__link_place_side-menu" : ""
             } hover-link`}
           >
             Главная
@@ -29,10 +30,8 @@ function Navigation({ isSideMenu }) {
         <li className="navigation__menu-item">
           <Link
             to="/movies"
-            className={`navigation__link typo-main-font ${
-              isSideMenu
-                ? "navigation__link_place_side-menu typo-side-menu-link"
-                : "typo-header-link"
+            className={`navigation__link ${
+              isSideMenu ? "navigation__link_place_side-menu" : ""
             } hover-link`}
           >
             Фильмы
@@ -41,10 +40,8 @@ function Navigation({ isSideMenu }) {
         <li className="navigation__menu-item">
           <Link
             to="/saved-movies"
-            className={`navigation__link typo-main-font ${
-              isSideMenu
-                ? "navigation__link_place_side-menu typo-side-menu-link"
-                : "typo-header-link"
+            className={`navigation__link ${
+              isSideMenu ? "navigation__link_place_side-menu" : ""
             } hover-link`}
           >
             Сохранённые фильмы

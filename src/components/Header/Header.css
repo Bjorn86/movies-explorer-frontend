@@ -27,6 +27,9 @@
 }
 
 .header__link {
+  font-family: var(--main-font);
+  font-size: 12px;
+  font-weight: 500;
   line-height: 1.33;
   text-decoration: none;
   color: var(--text-white);
@@ -77,6 +80,7 @@
   }
 
   .header__link {
+    font-size: 10px;
     line-height: 1.6;
   }
 

@@ -5,16 +5,3 @@
 /* COMMON */
 @import url("./components/Common/Variables.css");
 @import url("./components/Common/Hover.css");
-@import url("./components/Common/Typography.css");
-
-/* COMPONENTS */
-@import url("./components/App/App.css");
-@import url("./components/Header/Header.css");
-@import url("./components/Logo/Logo.css");
-@import url("./components/Navigation/Navigation.css");
-@import url("./components/AccountLink/AccountLink.css");
-@import url("./components/Main/Main.css");
-@import url("./components/Promo/Promo.css");
-
-@import url("./components/HamburgerMenu/HamburgerMenu.css");
-@import url("./components/Overlay/Overlay.css");

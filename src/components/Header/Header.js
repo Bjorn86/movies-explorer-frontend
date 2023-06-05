@@ -1,6 +1,9 @@
 // IMPORT PACKAGES
 import { Link, Route, Routes } from "react-router-dom";
 
+// IMPORT STYLES
+import "./Header.css";
+
 // IMPORT COMPONENTS
 import Logo from "../Logo/Logo";
 import Navigation from "../Navigation/Navigation";
@@ -24,17 +27,14 @@ function Header({ onHamburgerClick }) {
               </Link>
               <ul className="header__menu">
                 <li className="header__menu-item">
-                  <Link
-                    to="/signup"
-                    className="header__link typo-main-font typo-header-link_size_s hover-link"
-                  >
+                  <Link to="/signup" className="header__link hover-link">
                     Регистрация
                   </Link>
                 </li>
                 <li className="header__menu-item">
                   <Link
                     to="/signin"
-                    className="header__link header__link_type_login typo-main-font typo-header-link_size_s hover-button"
+                    className="header__link header__link_type_login hover-button"
                   >
                     Войти
                   </Link>

@@ -1,6 +1,9 @@
 // IMPORT PACKAGES
 import { useEffect } from "react";
 
+// IMPORT STYLES
+import "./Overlay.css";
+
 // IMPORT VARIABLES
 import { ESC_KEY } from "../../utils/constants";
 

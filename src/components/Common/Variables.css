@@ -9,8 +9,9 @@
   --divider-bg-color-dark-grey: #424242;
   --divider-bg-color-light-grey: #dadada;
   --bg-color-main: #202020;
-  --bg-color-accent: #272727;
+  --bg-color-accent-dark-grey: #272727;
   --bg-color-hero: #073042;
   --bg-color-overlay-opacity: rgba(0, 0, 0, 0.3);
+  --main-font: "Inter", "Arial", sans-serif;
   --opacity: opacity 0.5s;
 }

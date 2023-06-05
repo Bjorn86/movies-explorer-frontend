@@ -3,6 +3,9 @@
   border-radius: 50px;
   border: 2px solid var(--block-border-grey-opacity);
   background: url("../../images/profile-icon.svg") 12px center/12px no-repeat;
+  font-family: var(--main-font);
+  font-size: 14px;
+  font-weight: 500;
   line-height: 1.14;
   color: var(--text-white);
   text-decoration: none;

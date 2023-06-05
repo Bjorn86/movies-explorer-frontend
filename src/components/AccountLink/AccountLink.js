@@ -1,6 +1,9 @@
 // IMPORT PACKAGES
 import { Link } from "react-router-dom";
 
+// IMPORT STYLES
+import "./AccountLink.css";
+
 // ACCOUNT LINK COMPONENT
 function AccountLink({ isSideMenu }) {
   return (
@@ -8,7 +11,7 @@ function AccountLink({ isSideMenu }) {
       to="/profile"
       className={`account-link ${
         isSideMenu ? "account-link_place_side-menu" : "account-link_hidden"
-      } typo-main-font typo-header-link_size_l hover-button`}
+      } hover-button`}
     >
       Аккаунт
     </Link>

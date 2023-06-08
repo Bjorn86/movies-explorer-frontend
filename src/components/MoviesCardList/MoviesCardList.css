@@ -57,6 +57,10 @@
   }
 
   .movies-card-list__list {
+    justify-content: space-evenly;
+  }
+
+  .movies-card-list__list {
     grid-template-columns: repeat(auto-fit, 339px);
     gap: 30px 30px;
   }

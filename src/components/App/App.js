@@ -9,10 +9,12 @@ import "./App.css";
 import AppLayout from "../AppLayout/AppLayout";
 import Main from "../Main/Main";
 import Movies from "../Movies/Movies";
+import SavedMovies from "../SavedMovies/SavedMovies";
 import HamburgerMenu from "../HamburgerMenu/HamburgerMenu";
 
 // !TEMP: IMPORT TEMP FILES
 import moviesCards from "../../temp/data.json";
+import moviesSavedCards from "../../temp/savedData.json";
 
 // APP COMPONENT
 function App() {
@@ -20,6 +22,7 @@ function App() {
   const [isSideMenuOpen, setSideMenuClass] = useState(false);
   const [isFilterOn, setFilter] = useState(false);
   const [cards, setCards] = useState([]);
+  const [savedCards, setSavedCards] = useState([]);
   const [isLiked, setLike] = useState(false); // !TEMP: Временный вариант
 
   // HANDLER TOGGLE SIDE MENU
@@ -40,6 +43,7 @@ function App() {
   // !TEMP: SET DATA
   useEffect(() => {
     setCards(moviesCards);
+    setSavedCards(moviesSavedCards);
   }, []);
 
   return (
@@ -62,6 +66,16 @@ function App() {
               />
             }
           />
+          <Route
+            path="/saved-movies"
+            element={
+              <SavedMovies
+                cards={savedCards}
+                onFilterChange={handleFilterChange}
+                isFilterOn={isFilterOn}
+              />
+            }
+          />
         </Route>
       </Routes>
       <HamburgerMenu
@@ -77,8 +91,4 @@ export default App;
 /* TODO Подумать над плавной прокруткой для якоря */
 /* TODO Есть переполнение <li> там где внутрь тега помещена ссылка стилизованная под кнопку */
 /* TODO Есть откровенные ошибки в макете. Пока делаю так как должно быть по идеи. Определиться в каком виде отправлять */
-/* TODO Подумать над созданием общих компонентов. Например Section */
-/* TODO Удалить изображение удаления если он будет вставкой в HTML */
 /* TODO Провести ревизию CSS переменных */
-/* TODO Сделать прелоадер */
-/* TODO Подготовить шаблон если cards.length === 0 */

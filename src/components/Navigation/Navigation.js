@@ -6,7 +6,7 @@ import "./Navigation.css";
 
 // NAVIGATION COMPONENT
 function Navigation({ isSideMenu }) {
-  // !TEMP VARIABLES
+  // VARIABLES
   const location = useLocation();
 
   return (

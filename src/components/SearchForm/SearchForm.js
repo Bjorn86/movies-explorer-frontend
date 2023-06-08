@@ -18,6 +18,9 @@ function SearchForm({ onFilterChange, isFilterOn }) {
           name="search"
           placeholder="Фильм"
           type="search"
+          autoComplete="off"
+          autoCorrect="off"
+          autoCapitalize="off"
         />
         <FilterCheckbox
           onFilterChange={onFilterChange}

@@ -4,6 +4,13 @@
   --text-black: #000000;
   --block-bg-color-main: #303030;
   --block-bg-color-accent: #3ddc84;
+  --block-bg-color-blue: #4285f4;
+  --block-bg-color-white: #ffffff;
+  --block-bg-color-dark-grey: #343434;
+  --block-bg-color-light-grey: #a0a0a0;
+  --btn-bg-color-grey: #313131;
+  --btn-bg-color-dark-grey: #2f2f2f;
+  --btn-bg-color-red: #ee3465;
   --block-border-grey-opacity: rgba(170, 170, 170, 0.2);
   --block-border-white-opacity: rgba(255, 255, 255, 0.5);
   --divider-bg-color-dark-grey: #424242;

@@ -1,11 +1,14 @@
 // IMPORT PACKAGES
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 // IMPORT STYLES
 import "./Navigation.css";
 
 // NAVIGATION COMPONENT
 function Navigation({ isSideMenu }) {
+  // !TEMP VARIABLES
+  const location = useLocation();
+
   return (
     <nav className={`navigation ${isSideMenu ? "" : "navigation_hidden"}`}>
       <ul
@@ -22,6 +25,10 @@ function Navigation({ isSideMenu }) {
             to="/"
             className={`navigation__link ${
               isSideMenu ? "navigation__link_place_side-menu" : ""
+            } ${
+              location.pathname === "/" && isSideMenu
+                ? "navigation__link_place_side-menu-active"
+                : ""
             } hover-link`}
           >
             Главная
@@ -32,6 +39,14 @@ function Navigation({ isSideMenu }) {
             to="/movies"
             className={`navigation__link ${
               isSideMenu ? "navigation__link_place_side-menu" : ""
+            } ${
+              location.pathname === "/movies" && !isSideMenu
+                ? "navigation__link_place_header-active"
+                : ""
+            } ${
+              location.pathname === "/movies" && isSideMenu
+                ? "navigation__link_place_side-menu-active"
+                : ""
             } hover-link`}
           >
             Фильмы
@@ -42,6 +57,14 @@ function Navigation({ isSideMenu }) {
             to="/saved-movies"
             className={`navigation__link ${
               isSideMenu ? "navigation__link_place_side-menu" : ""
+            } ${
+              location.pathname === "/saved-movies" && !isSideMenu
+                ? "navigation__link_place_header-active"
+                : ""
+            } ${
+              location.pathname === "/saved-movies" && isSideMenu
+                ? "navigation__link_place_side-menu-active"
+                : ""
             } hover-link`}
           >
             Сохранённые фильмы

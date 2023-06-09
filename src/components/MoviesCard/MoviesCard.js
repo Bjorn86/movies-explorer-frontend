@@ -50,7 +50,7 @@ function MoviesCard({ card, isLiked, onCardLike }) {
           </button>
         ) : (
           <button
-            className="movies-card__btn-action movies-card__btn-action_page_saved-movies"
+            className="movies-card__btn-action movies-card__btn-action_palce_saved-movies"
             type="button"
             aria-label="Удалить фильм из сохранённых"
           >

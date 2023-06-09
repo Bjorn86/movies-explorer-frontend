@@ -2,6 +2,8 @@
   --text-white: #ffffff;
   --text-grey: #8b8b8b;
   --text-black: #000000;
+  --text-server-error: #ff004c;
+  --text-disabled: #c2c2c2;
   --block-bg-color-main: #303030;
   --block-bg-color-accent: #3ddc84;
   --block-bg-color-blue: #4285f4;
@@ -11,6 +13,8 @@
   --btn-bg-color-grey: #313131;
   --btn-bg-color-dark-grey: #2f2f2f;
   --btn-bg-color-red: #ee3465;
+  --btn-bg-color-dark-blue: #3456f3;
+  --btn-bg-color-disabled: #f8f8f8;
   --block-border-grey-opacity: rgba(170, 170, 170, 0.2);
   --block-border-white-opacity: rgba(255, 255, 255, 0.5);
   --divider-bg-color-dark-grey: #424242;

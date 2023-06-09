@@ -48,11 +48,11 @@
   transition: var(--opacity);
 }
 
-.movies-card__btn-action_page_saved-movies {
+.movies-card__btn-action_palce_saved-movies {
   opacity: 0;
 }
 
-.movies-card__btn-action_page_saved-movies:hover {
+.movies-card__btn-action_palce_saved-movies:hover {
   opacity: 1;
 }
 
@@ -113,13 +113,13 @@
 }
 
 @media (hover: none) and (pointer: coarse) {
-  .movies-card__btn-action_page_saved-movies {
+  .movies-card__btn-action_palce_saved-movies {
     opacity: 1;
   }
 }
 
 @media (hover: none) and (pointer: fine) {
-  .movies-card__btn-action_page_saved-movies {
+  .movies-card__btn-action_palce_saved-movies {
     opacity: 1;
   }
 }

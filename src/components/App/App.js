@@ -11,10 +11,12 @@ import Main from "../Main/Main";
 import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import HamburgerMenu from "../HamburgerMenu/HamburgerMenu";
+import Profile from "../Profile/Profile";
 
 // !TEMP: IMPORT TEMP FILES
 import moviesCards from "../../temp/data.json";
 import moviesSavedCards from "../../temp/savedData.json";
+import userData from "../../temp/userData.json";
 
 // APP COMPONENT
 function App() {
@@ -76,6 +78,7 @@ function App() {
               />
             }
           />
+          <Route path="/profile" element={<Profile user={userData} />} />
         </Route>
       </Routes>
       <HamburgerMenu

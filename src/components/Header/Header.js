@@ -87,6 +87,28 @@ function Header({ onHamburgerClick }) {
             </div>
           }
         />
+        <Route
+          path="/profile"
+          element={
+            <div className="header__wrapper">
+              <Link
+                to="/"
+                className="header__link hover-button"
+                aria-label="Главная"
+              >
+                <Logo />
+              </Link>
+              <Navigation />
+              <AccountLink />
+              <button
+                className="header__btn-hamburger hover-button"
+                type="button"
+                aria-label="Меню навигации"
+                onClick={onHamburgerClick}
+              ></button>
+            </div>
+          }
+        />
       </Routes>
     </header>
   );

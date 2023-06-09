@@ -1,5 +1,5 @@
 // IMPORT PACKAGES
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 
 // IMPORT COMPONENTS
 import Header from "../Header/Header";
@@ -7,11 +7,14 @@ import Footer from "../Footer/Footer";
 
 // APP LAYOUT COMPONENT
 function AppLayout({ onHamburgerClick }) {
+  // VARIABLES
+  const location = useLocation();
+
   return (
     <>
       <Header onHamburgerClick={onHamburgerClick} />
       <Outlet />
-      <Footer />
+      {location.pathname !== "/profile" && <Footer />}
     </>
   );
 }

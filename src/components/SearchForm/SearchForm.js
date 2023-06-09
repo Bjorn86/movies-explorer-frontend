@@ -11,7 +11,13 @@ function SearchForm({ onFilterChange, isFilterOn }) {
       className="search-form"
       aria-label="Секция с поиском и фильтрацией"
     >
-      <form className="search-form__form" id="search-and-filter">
+      <form
+        className="search-form__form"
+        id="search-and-filter"
+        action="#"
+        name="search-and-filter"
+        noValidate
+      >
         <input
           className="search-form__search"
           form="search-and-filter"
@@ -26,7 +32,11 @@ function SearchForm({ onFilterChange, isFilterOn }) {
           onFilterChange={onFilterChange}
           isFilterOn={isFilterOn}
         />
-        <button className="search-form__btn-submit hover-button" type="submit">
+        <button
+          className="search-form__btn-submit hover-button"
+          type="submit"
+          form="search-and-filter"
+        >
           Найти
         </button>
       </form>

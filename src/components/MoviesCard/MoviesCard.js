@@ -6,7 +6,7 @@ import "./MoviesCard.css";
 
 // MOVIES CARD COMPONENT
 function MoviesCard({ card, isLiked, onCardLike }) {
-  // VARIABLES
+  // HOOKS
   const location = useLocation();
 
   // HANDLER CONVERT DURATION
@@ -50,7 +50,7 @@ function MoviesCard({ card, isLiked, onCardLike }) {
           </button>
         ) : (
           <button
-            className="movies-card__btn-action movies-card__btn-action_palce_saved-movies"
+            className="movies-card__btn-action movies-card__btn-action_place_saved-movies"
             type="button"
             aria-label="Удалить фильм из сохранённых"
           >

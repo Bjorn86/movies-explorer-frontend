@@ -8,24 +8,24 @@ import "./Overlay.css";
 import { ESC_KEY } from "../../utils/constants";
 
 // OVERLAY COMPONENT
-function Overlay({ isActive, onCloseClick, ...props }) {
+function Overlay({ isActive, onClose, ...props }) {
   // HANDLER CLOSE BY ESC BUTTON
   useEffect(() => {
     function handleEscClose(evt) {
       if (evt.key === ESC_KEY) {
-        onCloseClick();
+        onClose();
       }
     }
     if (isActive) {
       document.addEventListener("keydown", handleEscClose);
       return () => document.removeEventListener("keydown", handleEscClose);
     }
-  }, [isActive, onCloseClick]);
+  }, [isActive, onClose]);
 
   // HANDLER CLOSE BY CLICK ON OVERLAY
   const closeByClickOnOverlay = (evt) => {
     if (evt.target === evt.currentTarget) {
-      onCloseClick();
+      onClose();
     }
   };
 

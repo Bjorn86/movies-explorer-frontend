@@ -6,6 +6,11 @@ import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 
 // SEARCH FORM COMPONENT
 function SearchForm({ onFilterChange, isFilterOn }) {
+  // HANDLER SUBMIT
+  function handleSubmit(e) {
+    e.preventDefault();
+  }
+
   return (
     <section
       className="search-form"
@@ -17,6 +22,7 @@ function SearchForm({ onFilterChange, isFilterOn }) {
         action="#"
         name="search-and-filter"
         noValidate
+        onSubmit={handleSubmit}
       >
         <input
           className="search-form__search"

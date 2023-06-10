@@ -36,7 +36,7 @@
   font-weight: 400;
   font-size: 30px;
   letter-spacing: -0.04em;
-  color: var(--text-white);
+  color: var(--white);
   text-decoration: none;
   transition: var(--opacity);
 }

@@ -1,8 +1,8 @@
 // IMPORT STYLES
-import SectionTitle from "../SectionTitle/SectionTitle";
 import "./Techs.css";
 
 // IMPORT COMPONENTS
+import SectionTitle from "../SectionTitle/SectionTitle";
 
 // TECHS COMPONENT
 function Techs() {

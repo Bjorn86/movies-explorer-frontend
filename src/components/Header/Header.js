@@ -18,28 +18,24 @@ function Header({ onHamburgerClick }) {
           path="/"
           element={
             <div className="header__wrapper header__wrapper_bg-color_hero">
-              <Link
-                to="/"
-                className="header__link hover-button"
-                aria-label="Главная"
-              >
-                <Logo />
-              </Link>
-              <ul className="header__menu">
-                <li className="header__menu-item">
-                  <Link to="/signup" className="header__link hover-link">
-                    Регистрация
-                  </Link>
-                </li>
-                <li className="header__menu-item">
-                  <Link
-                    to="/signin"
-                    className="header__link header__link_type_login hover-button"
-                  >
-                    Войти
-                  </Link>
-                </li>
-              </ul>
+              <Logo />
+              <nav className="header__menu">
+                <ul className="header__menu-wrapper">
+                  <li className="header__menu-item">
+                    <Link to="/signup" className="header__link hover-link">
+                      Регистрация
+                    </Link>
+                  </li>
+                  <li className="header__menu-item">
+                    <Link
+                      to="/signin"
+                      className="header__link header__link_type_login hover-button"
+                    >
+                      Войти
+                    </Link>
+                  </li>
+                </ul>
+              </nav>
             </div>
           }
         />
@@ -47,13 +43,7 @@ function Header({ onHamburgerClick }) {
           path="/movies"
           element={
             <div className="header__wrapper">
-              <Link
-                to="/"
-                className="header__link hover-button"
-                aria-label="Главная"
-              >
-                <Logo />
-              </Link>
+              <Logo />
               <Navigation />
               <AccountLink />
               <button
@@ -69,13 +59,7 @@ function Header({ onHamburgerClick }) {
           path="/saved-movies"
           element={
             <div className="header__wrapper">
-              <Link
-                to="/"
-                className="header__link hover-button"
-                aria-label="Главная"
-              >
-                <Logo />
-              </Link>
+              <Logo />
               <Navigation />
               <AccountLink />
               <button
@@ -91,13 +75,7 @@ function Header({ onHamburgerClick }) {
           path="/profile"
           element={
             <div className="header__wrapper">
-              <Link
-                to="/"
-                className="header__link hover-button"
-                aria-label="Главная"
-              >
-                <Logo />
-              </Link>
+              <Logo />
               <Navigation />
               <AccountLink />
               <button

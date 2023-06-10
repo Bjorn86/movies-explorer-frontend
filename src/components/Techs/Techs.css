@@ -3,7 +3,7 @@
   margin: 0 auto;
   padding: 100px 70px;
   box-sizing: border-box;
-  background-color: var(--bg-color-accent-dark-grey);
+  background-color: var(--bg-color-dark-grey);
 }
 
 .techs__title {
@@ -15,7 +15,7 @@
   line-height: 1.16;
   letter-spacing: -0.04em;
   text-align: center;
-  color: var(--text-white);
+  color: var(--white);
 }
 
 .techs__text {
@@ -27,7 +27,7 @@
   line-height: 1.43;
   letter-spacing: -0.04em;
   text-align: center;
-  color: var(--text-white);
+  color: var(--white);
 }
 
 .techs__list {
@@ -58,7 +58,7 @@
   font-size: 14px;
   line-height: 1.21;
   letter-spacing: -0.04em;
-  color: var(--text-white);
+  color: var(--white);
 }
 
 @media screen and (max-width: 990px) {

@@ -5,8 +5,8 @@ import { Link, useLocation } from "react-router-dom";
 import "./Navigation.css";
 
 // NAVIGATION COMPONENT
-function Navigation({ isSideMenu }) {
-  // VARIABLES
+function Navigation({ isSideMenu, onClose }) {
+  // HOOKS
   const location = useLocation();
 
   return (
@@ -23,6 +23,7 @@ function Navigation({ isSideMenu }) {
         >
           <Link
             to="/"
+            onClick={onClose}
             className={`navigation__link ${
               isSideMenu ? "navigation__link_place_side-menu" : ""
             } ${
@@ -37,6 +38,7 @@ function Navigation({ isSideMenu }) {
         <li className="navigation__menu-item">
           <Link
             to="/movies"
+            onClick={onClose}
             className={`navigation__link ${
               isSideMenu ? "navigation__link_place_side-menu" : ""
             } ${
@@ -55,6 +57,7 @@ function Navigation({ isSideMenu }) {
         <li className="navigation__menu-item">
           <Link
             to="/saved-movies"
+            onClick={onClose}
             className={`navigation__link ${
               isSideMenu ? "navigation__link_place_side-menu" : ""
             } ${

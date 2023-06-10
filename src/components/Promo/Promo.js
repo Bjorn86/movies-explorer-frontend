@@ -5,7 +5,7 @@ import "./Promo.css";
 import hero from "../../images/hero-logo.svg";
 
 // PROMO COMPONENT
-function Promo() {
+function Promo({ onAnchorClick, aboutRef }) {
   return (
     <section className="promo">
       <div className="promo__text-wrapper">
@@ -16,9 +16,13 @@ function Promo() {
           Листайте ниже, чтобы узнать больше про этот проект и&nbsp;его
           создателя.
         </p>
-        <a className="promo__link hover-button" href="#about">
+        <button
+          className="promo__btn-anchor hover-button"
+          type="button"
+          onClick={() => onAnchorClick(aboutRef)}
+        >
           Узнать больше
-        </a>
+        </button>
       </div>
       <img className="promo__img" src={hero} alt="Изображение земного шара" />
     </section>

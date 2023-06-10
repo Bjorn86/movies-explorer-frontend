@@ -27,7 +27,7 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 1.29;
-  color: var(--text-white);
+  color: var(--white);
 }
 
 .search-form__search::placeholder {
@@ -48,13 +48,13 @@
   padding: 0;
   border: none;
   border-radius: 48px;
-  background-color: var(--block-bg-color-blue);
+  background-color: var(--blue);
   cursor: pointer;
   font-family: var(--main-font);
   font-weight: 500;
   font-size: 11px;
   line-height: 1.64;
-  color: var(--text-white);
+  color: var(--white);
   transition: var(--opacity);
 }
 

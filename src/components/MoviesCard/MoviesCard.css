@@ -11,7 +11,7 @@
   font-size: 13px;
   font-weight: 400;
   line-height: 1.23;
-  color: var(--text-white);
+  color: var(--white);
 }
 
 .movies-card__caption {
@@ -34,7 +34,7 @@
   line-height: 1.23;
   overflow: hidden;
   -webkit-line-clamp: 2;
-  color: var(--text-white);
+  color: var(--white);
 }
 
 .movies-card__btn-action {
@@ -48,11 +48,11 @@
   transition: var(--opacity);
 }
 
-.movies-card__btn-action_palce_saved-movies {
+.movies-card__btn-action_place_saved-movies {
   opacity: 0;
 }
 
-.movies-card__btn-action_palce_saved-movies:hover {
+.movies-card__btn-action_place_saved-movies:hover {
   opacity: 1;
 }
 
@@ -69,7 +69,7 @@
 }
 
 .movies-card__btn-like-img_active path {
-  fill: var(--btn-bg-color-red);
+  fill: var(--red);
 }
 
 .movies-card__duration {
@@ -113,13 +113,13 @@
 }
 
 @media (hover: none) and (pointer: coarse) {
-  .movies-card__btn-action_palce_saved-movies {
+  .movies-card__btn-action_place_saved-movies {
     opacity: 1;
   }
 }
 
 @media (hover: none) and (pointer: fine) {
-  .movies-card__btn-action_palce_saved-movies {
+  .movies-card__btn-action_place_saved-movies {
     opacity: 1;
   }
 }

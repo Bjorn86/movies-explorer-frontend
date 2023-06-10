@@ -29,7 +29,7 @@
   font-size: 50px;
   line-height: 1.16;
   letter-spacing: -0.04em;
-  color: var(--text-white);
+  color: var(--white);
 }
 
 .about-me__profession {
@@ -40,7 +40,7 @@
   font-weight: 500;
   font-size: 18px;
   line-height: 1.11;
-  color: var(--text-white);
+  color: var(--white);
 }
 
 .about-me__text {
@@ -51,11 +51,10 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 1.57;
-  color: var(--text-white);
+  color: var(--white);
 }
 
 .about-me__link {
-  /* margin-top: 34px; */
   align-self: end;
   margin-right: auto;
   grid-area: link;
@@ -63,7 +62,7 @@
   font-weight: 500;
   font-size: 14px;
   line-height: 1.21;
-  color: var(--text-white);
+  color: var(--white);
   text-decoration: none;
   transition: var(--opacity);
 }
@@ -77,7 +76,7 @@
   font-size: 13px;
   font-weight: 400;
   line-height: 1.23;
-  color: var(--text-white);
+  color: var(--white);
 }
 
 @media screen and (max-width: 990px) {

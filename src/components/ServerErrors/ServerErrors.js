@@ -2,10 +2,10 @@
 import "./ServerErrors.css";
 
 // SERVER ERRORS COMPONENT
-function ServerErrors({ isEditingBegun }) {
+function ServerErrors({ isEditingBegun, place }) {
   return (
     <p
-      className={`server-errors ${
+      className={`server-errors server-errors_place_${place} ${
         isEditingBegun ? "server-errors_active" : ""
       }`}
     >

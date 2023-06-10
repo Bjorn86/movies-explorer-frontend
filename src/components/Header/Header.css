@@ -16,7 +16,7 @@
   background-color: var(--bg-color-hero);
 }
 
-.header__menu {
+.header__menu-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -32,15 +32,15 @@
   font-weight: 500;
   line-height: 1.33;
   text-decoration: none;
-  color: var(--text-white);
+  color: var(--white);
   transition: var(--opacity);
 }
 
 .header__link_type_login {
-  color: var(--text-black);
+  color: var(--black);
   padding: 8px 20px;
   border-radius: 3px;
-  background-color: var(--block-bg-color-accent);
+  background-color: var(--block-bg-color-green);
 }
 
 .header__btn-hamburger {

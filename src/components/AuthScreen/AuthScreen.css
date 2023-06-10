@@ -1,0 +1,44 @@
+.auth-screen {
+  max-width: 456px;
+  margin: 0 auto;
+  padding: 70px 30px 70px;
+  box-sizing: border-box;
+  background-color: var(--bg-color-main);
+}
+
+.auth-screen__text {
+  margin-top: 16px;
+  margin-bottom: 0;
+  font-family: var(--main-font);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.21;
+  text-align: center;
+  color: var(--text-grey);
+}
+
+.auth-screen__link {
+  text-decoration: none;
+  color: var(--blue);
+  transition: var(--opacity);
+}
+
+@media screen and (max-width: 990px) {
+  .auth-screen {
+    padding-top: 232px;
+    padding-bottom: 232px;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .auth-screen {
+    padding-top: 56px;
+    padding-bottom: 30px;
+  }
+
+  .auth-screen__text {
+    margin-top: 14px;
+    font-size: 12px;
+    line-height: 1.25;
+  }
+}

@@ -1,7 +1,6 @@
 .server-errors {
   min-height: 26px;
-  margin-top: 39px;
-  margin-bottom: 0;
+  margin: 0;
   opacity: 0;
   font-family: var(--main-font);
   font-size: 11px;
@@ -11,12 +10,32 @@
   color: var(--text-server-error);
 }
 
+.server-errors_place_edit-profile {
+  margin-top: 39px;
+}
+
+.server-errors_place_login {
+  margin-top: 152px;
+}
+
+.server-errors_place_registr {
+  margin-top: 83px;
+}
+
 .server-errors_active {
   opacity: 1;
 }
 
 @media screen and (max-width: 620px) {
-  .server-errors {
-    margin-top: 208px;
+  .server-errors_place_edit-profile {
+    margin-top: 210px;
+  }
+
+  .server-errors_place_login {
+    margin-top: 239px;
+  }
+
+  .server-errors_place_registr {
+    margin-top: 171px;
   }
 }

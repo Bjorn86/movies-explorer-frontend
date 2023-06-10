@@ -7,7 +7,7 @@ import Footer from "../Footer/Footer";
 
 // APP LAYOUT COMPONENT
 function AppLayout({ onHamburgerClick }) {
-  // VARIABLES
+  // HOOKS
   const location = useLocation();
 
   return (

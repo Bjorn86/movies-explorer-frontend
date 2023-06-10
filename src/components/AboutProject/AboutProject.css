@@ -20,7 +20,7 @@
   font-size: 20px;
   line-height: 1.2;
   letter-spacing: -0.04em;
-  color: var(--text-white);
+  color: var(--white);
 }
 
 .about-project__column-text {
@@ -30,7 +30,7 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 1.43;
-  color: var(--text-white);
+  color: var(--white);
 }
 
 .about-project__timeline {
@@ -62,12 +62,12 @@
   font-size: 14px;
   line-height: 1.21;
   text-align: center;
-  color: var(--text-black);
-  background-color: var(--block-bg-color-accent);
+  color: var(--black);
+  background-color: var(--block-bg-color-green);
 }
 
 .about-project__stage-text_type_second {
-  color: var(--text-white);
+  color: var(--white);
   background-color: var(--block-bg-color-main);
 }
 

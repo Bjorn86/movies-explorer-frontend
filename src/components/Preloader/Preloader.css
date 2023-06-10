@@ -61,7 +61,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  background: var(--block-bg-color-blue);
+  background: var(--blue);
   border-radius: 50px;
 }
 
@@ -77,12 +77,12 @@
 }
 
 .preloader__round::after {
-  background: var(--block-bg-color-accent);
+  background: var(--block-bg-color-green);
   animation: preloader-inside-white 1s ease-in-out infinite;
 }
 
 .preloader__round::before {
   z-index: 10;
-  background: var(--block-bg-color-blue);
+  background: var(--blue);
   animation: preloader-inside-red 1s ease-in-out infinite;
 }

@@ -6,20 +6,24 @@ import useValidation from "../../hooks/useValidation";
 import "./Profile.css";
 
 // IMPORT COMPONENTS
+import AuthTitle from "../AuthTitle/AuthTitle";
 import Form from "../Form/Form";
 
 // PROFILE COMPONENT
-function Profile({ user, onSubmit }) {
-  // STATE VARIABLES
+function Profile({ user }) {
+  // HOOKS
   const [isEditingBegun, setEditingStatus] = useState(false);
-
-  // VALIDATION CUSTOM HOOK
   const { values, errors, isFormValid, onChange, resetValidation } =
     useValidation();
 
   // HANDLER EDIT CLICK
   function handleEditClick() {
     setEditingStatus(!isEditingBegun);
+  }
+
+  // HANDLER SUBMIT
+  function handleSubmit(e) {
+    e.preventDefault();
   }
 
   // SET USER DATA TO INPUTS FROM PROFILE
@@ -30,18 +34,20 @@ function Profile({ user, onSubmit }) {
   return (
     <main className="profile">
       <section className="profile__wrapper">
-        <h1 className="profile__title">{`Привет, ${user.name}!`}</h1>
+        <AuthTitle title={`Привет, ${user.name}!`} place="edit-profile" />
         <Form
           name="edit-profile"
-          onSubmit={onSubmit}
+          onSubmit={handleSubmit}
           isFormValid={isFormValid}
           buttonText="Сохранить"
           isEditingBegun={isEditingBegun}
         >
-          <label className="form__input-wrapper form__input-wrapper_place_edit-profile">
+          <label className="form__input-wrapper form__input-wrapper_type_edit-profile">
             Имя
             <input
-              className="form__input form__input_place_edit-profile"
+              className={`form__input form__input_type_edit-profile ${
+                errors.name ? "form__input_style_error" : ""
+              }`}
               type="text"
               name="name"
               form="edit-profile"
@@ -54,10 +60,12 @@ function Profile({ user, onSubmit }) {
               value={values.name || ""}
             />
           </label>
-          <label className="form__input-wrapper form__input-wrapper_place_edit-profile">
+          <label className="form__input-wrapper form__input-wrapper_type_edit-profile">
             E-mail
             <input
-              className="form__input form__input_place_edit-profile"
+              className={`form__input form__input_type_edit-profile ${
+                errors.email ? "form__input_style_error" : ""
+              }`}
               type="email"
               name="email"
               form="edit-profile"
@@ -82,7 +90,7 @@ function Profile({ user, onSubmit }) {
                 Имя:
               </p>
               <span
-                className={`form__input-error ${
+                className={`form__input-error form__input-error_type_edit-profile ${
                   errors.name ? "form__input-error_active" : ""
                 }`}
               >
@@ -98,7 +106,7 @@ function Profile({ user, onSubmit }) {
                 E-mail:
               </p>
               <span
-                className={`form__input-error ${
+                className={`form__input-error form__input-error_type_edit-profile ${
                   errors.email ? "form__input-error_active" : ""
                 }`}
               >

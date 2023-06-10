@@ -23,12 +23,14 @@ function Form({
       onSubmit={onSubmit}
     >
       {props.children}
-      <ServerErrors isEditingBegun={isEditingBegun} />
+      <ServerErrors isEditingBegun={isEditingBegun} place={name} />
       <button
         type="submit"
         form={`${name}`}
         className={`form__btn-submit ${
-          isEditingBegun ? "" : "form__btn-submit_hidden"
+          name === "edit-profile" && !isEditingBegun
+            ? "form__btn-submit_hidden"
+            : ""
         } hover-button`}
         disabled={isFormValid ? false : true}
       >

@@ -8,7 +8,7 @@
   font-weight: 400;
   font-size: 13px;
   line-height: 1.38;
-  color: var(--text-white);
+  color: var(--white);
 }
 
 .filter-checkbox__toggle {
@@ -57,12 +57,12 @@
 }
 
 .filter-checkbox__toggle:checked + .filter-checkbox__track {
-  background-color: var(--block-bg-color-accent);
+  background-color: var(--block-bg-color-green);
 }
 
 .filter-checkbox__toggle:checked + .filter-checkbox__track::before {
   transform: translate(200%, -50%);
-  background-color: var(--block-bg-color-white);
+  background-color: var(--white);
 }
 
 @media screen and (max-width: 990px) {

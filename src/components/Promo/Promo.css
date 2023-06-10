@@ -22,7 +22,7 @@
   font-size: 50px;
   font-weight: 400;
   line-height: 1.16;
-  color: var(--text-white);
+  color: var(--white);
 }
 
 .promo__text {
@@ -34,20 +34,22 @@
   font-size: 13px;
   font-weight: 400;
   line-height: 1.23;
-  color: var(--text-white);
+  color: var(--white);
 }
 
-.promo__link {
+.promo__btn-anchor {
+  width: 129px;
+  height: 36px;
   margin-top: 146px;
-  padding: 9px 19px;
   border: 1px solid var(--block-border-white-opacity);
   border-radius: 3px;
+  background-color: var(--bg-color-hero);
+  cursor: pointer;
   font-family: var(--main-font);
   font-size: 12px;
   font-weight: 500;
   line-height: 1.33;
-  text-decoration: none;
-  color: var(--text-white);
+  color: var(--white);
   transition: var(--opacity);
 }
 
@@ -59,7 +61,7 @@
   font-size: 13px;
   font-weight: 400;
   line-height: 1.23;
-  color: var(--text-white);
+  color: var(--white);
 }
 
 @media screen and (max-width: 990px) {
@@ -87,7 +89,7 @@
     text-align: center;
   }
 
-  .promo__link {
+  .promo__btn-anchor {
     margin-top: 92px;
   }
 
@@ -115,7 +117,7 @@
     margin-top: 24px;
   }
 
-  .promo__link {
+  .promo__btn-anchor {
     margin-top: 80px;
   }
 

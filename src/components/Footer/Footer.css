@@ -38,7 +38,7 @@
   font-weight: 400;
   font-size: 13px;
   line-height: 1.23;
-  color: var(--text-white);
+  color: var(--white);
 }
 
 .footer__list {
@@ -57,7 +57,7 @@
   font-weight: 400;
   font-size: 13px;
   text-decoration: none;
-  color: var(--text-white);
+  color: var(--white);
   transition: var(--opacity);
 }
 

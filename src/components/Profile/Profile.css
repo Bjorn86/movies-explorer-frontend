@@ -6,20 +6,9 @@
 .profile__wrapper {
   max-width: 470px;
   margin: 0 auto;
-  padding: 75px 30px 70px;
+  padding: 35px 30px 70px;
   box-sizing: border-box;
   background-color: var(--bg-color-main);
-}
-
-.profile__title {
-  margin-top: 0;
-  margin-bottom: 106px;
-  font-family: var(--main-font);
-  font-size: 24px;
-  font-weight: 500;
-  line-height: 1.2;
-  text-align: center;
-  color: var(--text-white);
 }
 
 .profile__actions-wrapper {
@@ -50,32 +39,28 @@
 }
 
 .profile__btn-action_type_edit {
-  color: var(--text-white);
+  color: var(--white);
 }
 
 .profile__btn-action_type_exit {
-  color: var(--btn-bg-color-red);
+  color: var(--red);
 }
 
 @media screen and (max-width: 990px) {
   .profile__wrapper {
-    padding-top: 236px;
+    padding-top: 197px;
     padding-bottom: 269px;
   }
 
-  .profile__title {
-    margin-bottom: 80px;
+  .profile__actions-wrapper {
+    margin-top: 20px;
   }
 }
 
 @media screen and (max-width: 620px) {
   .profile__wrapper {
-    padding-top: 70px;
+    padding-top: 21px;
     padding-bottom: 40px;
-  }
-
-  .profile__title {
-    margin-bottom: 64px;
   }
 
   .profile__btn-action {

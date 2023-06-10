@@ -1,5 +1,5 @@
 // IMPORT PACKAGES
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 
 // IMPORT STYLES
@@ -12,6 +12,9 @@ import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import HamburgerMenu from "../HamburgerMenu/HamburgerMenu";
 import Profile from "../Profile/Profile";
+import Login from "../Login/Login";
+import Registr from "../Register/Register";
+import NotFound from "../NotFound/NotFound";
 
 // !TEMP: IMPORT TEMP FILES
 import moviesCards from "../../temp/data.json";
@@ -20,16 +23,22 @@ import userData from "../../temp/userData.json";
 
 // APP COMPONENT
 function App() {
-  // STATE VARIABLES
-  const [isSideMenuOpen, setSideMenuClass] = useState(false);
+  // HOOKS
+  const [isSideMenuOpen, setSideMenuStatus] = useState(false);
   const [isFilterOn, setFilter] = useState(false);
   const [cards, setCards] = useState([]);
   const [savedCards, setSavedCards] = useState([]);
   const [isLiked, setLike] = useState(false); // !TEMP: Временный вариант
+  const aboutOnClickRef = useRef(null);
 
-  // HANDLER TOGGLE SIDE MENU
-  function handleToggleSideMenu() {
-    setSideMenuClass(!isSideMenuOpen);
+  // HANDLER OPEN SIDE MENU
+  function handleOpenSideMenu() {
+    setSideMenuStatus(!isSideMenuOpen);
+  }
+
+  // HANDLER CLOSE SIDE MENU
+  function handleCloseSideMenu() {
+    setSideMenuStatus(false);
   }
 
   // HANDLER FILTER CHANGE
@@ -40,6 +49,14 @@ function App() {
   // !TEMP: HANDLER CARD LIKE
   function handleCardLike() {
     setLike(!isLiked);
+  }
+
+  // HANDLER SMOOTH SCROLL EFFECT
+  function handleScrollEffect(targetRef) {
+    targetRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
   }
 
   // !TEMP: SET DATA
@@ -53,9 +70,17 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<AppLayout onHamburgerClick={handleToggleSideMenu} />}
+          element={<AppLayout onHamburgerClick={handleOpenSideMenu} />}
         >
-          <Route index element={<Main />} />
+          <Route
+            index
+            element={
+              <Main
+                onAnchorClick={handleScrollEffect}
+                aboutRef={aboutOnClickRef}
+              />
+            }
+          />
           <Route
             path="/movies"
             element={
@@ -80,18 +105,16 @@ function App() {
           />
           <Route path="/profile" element={<Profile user={userData} />} />
         </Route>
+        <Route path="/signin" element={<Login />} />
+        <Route path="/signup" element={<Registr />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <HamburgerMenu
         isSideMenuOpen={isSideMenuOpen}
-        onCloseClick={handleToggleSideMenu}
+        onClose={handleCloseSideMenu}
       />
     </div>
   );
 }
 
 export default App;
-
-/* TODO Подумать над плавной прокруткой для якоря */
-/* TODO Есть переполнение <li> там где внутрь тега помещена ссылка стилизованная под кнопку */
-/* TODO Есть откровенные ошибки в макете. Пока делаю так как должно быть по идеи. Определиться в каком виде отправлять */
-/* TODO Провести ревизию CSS переменных */

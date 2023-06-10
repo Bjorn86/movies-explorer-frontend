@@ -7,7 +7,7 @@
   font-size: 14px;
   font-weight: 500;
   line-height: 1.14;
-  color: var(--text-white);
+  color: var(--white);
   text-decoration: none;
   transition: var(--opacity);
 }

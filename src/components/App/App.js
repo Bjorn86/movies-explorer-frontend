@@ -16,6 +16,9 @@ import Login from "../Login/Login";
 import Registr from "../Register/Register";
 import NotFound from "../NotFound/NotFound";
 
+// IMPORT CONTEXT
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+
 // !TEMP: IMPORT TEMP FILES
 import moviesCards from "../../temp/data.json";
 import moviesSavedCards from "../../temp/savedData.json";
@@ -24,11 +27,12 @@ import userData from "../../temp/userData.json";
 // APP COMPONENT
 function App() {
   // HOOKS
-  const [isSideMenuOpen, setSideMenuStatus] = useState(false);
-  const [isFilterOn, setFilter] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
   const [savedCards, setSavedCards] = useState([]);
   const [isLiked, setLike] = useState(false); // !TEMP: Временный вариант
+  const [isSideMenuOpen, setSideMenuStatus] = useState(false);
+  const [isFilterOn, setFilter] = useState(false);
   const aboutOnClickRef = useRef(null);
 
   // HANDLER OPEN SIDE MENU
@@ -67,52 +71,54 @@ function App() {
 
   return (
     <div className="app__content">
-      <Routes>
-        <Route
-          path="/"
-          element={<AppLayout onHamburgerClick={handleOpenSideMenu} />}
-        >
+      <CurrentUserContext.Provider value={currentUser}>
+        <Routes>
           <Route
-            index
-            element={
-              <Main
-                onAnchorClick={handleScrollEffect}
-                aboutRef={aboutOnClickRef}
-              />
-            }
-          />
-          <Route
-            path="/movies"
-            element={
-              <Movies
-                cards={cards}
-                onFilterChange={handleFilterChange}
-                isFilterOn={isFilterOn}
-                isLiked={isLiked}
-                onCardLike={handleCardLike}
-              />
-            }
-          />
-          <Route
-            path="/saved-movies"
-            element={
-              <SavedMovies
-                cards={savedCards}
-                onFilterChange={handleFilterChange}
-                isFilterOn={isFilterOn}
-              />
-            }
-          />
-          <Route path="/profile" element={<Profile user={userData} />} />
-        </Route>
-        <Route path="/signin" element={<Login />} />
-        <Route path="/signup" element={<Registr />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-      <HamburgerMenu
-        isSideMenuOpen={isSideMenuOpen}
-        onClose={handleCloseSideMenu}
-      />
+            path="/"
+            element={<AppLayout onHamburgerClick={handleOpenSideMenu} />}
+          >
+            <Route
+              index
+              element={
+                <Main
+                  onAnchorClick={handleScrollEffect}
+                  aboutRef={aboutOnClickRef}
+                />
+              }
+            />
+            <Route
+              path="/movies"
+              element={
+                <Movies
+                  cards={cards}
+                  onFilterChange={handleFilterChange}
+                  isFilterOn={isFilterOn}
+                  isLiked={isLiked}
+                  onCardLike={handleCardLike}
+                />
+              }
+            />
+            <Route
+              path="/saved-movies"
+              element={
+                <SavedMovies
+                  cards={savedCards}
+                  onFilterChange={handleFilterChange}
+                  isFilterOn={isFilterOn}
+                />
+              }
+            />
+            <Route path="/profile" element={<Profile user={userData} />} />
+          </Route>
+          <Route path="/signin" element={<Login />} />
+          <Route path="/signup" element={<Registr />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        <HamburgerMenu
+          isSideMenuOpen={isSideMenuOpen}
+          onClose={handleCloseSideMenu}
+        />
+      </CurrentUserContext.Provider>
     </div>
   );
 }

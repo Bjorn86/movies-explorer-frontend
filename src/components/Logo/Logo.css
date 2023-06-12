@@ -1,0 +1,18 @@
+.logo {
+  width: max-content;
+  display: block;
+  text-decoration: none;
+  transition: var(--opacity);
+}
+
+.logo__img {
+  width: 38px;
+  height: 38px;
+  background: url("../../images/logo.svg") center center/cover no-repeat;
+}
+
+@media screen and (max-width: 620px) {
+  .logo_place_auth {
+    margin: 0 auto;
+  }
+}

@@ -1,0 +1,23 @@
+.account-link {
+  padding: 6px 10px 6px 29px;
+  border-radius: 50px;
+  border: 2px solid var(--block-border-grey-opacity);
+  background: url("../../images/profile-icon.svg") 12px center/12px no-repeat;
+  font-family: var(--main-font);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.14;
+  color: var(--white);
+  text-decoration: none;
+  transition: var(--opacity);
+}
+
+.account-link_place_side-menu {
+  margin-top: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .account-link_hidden {
+    display: none;
+  }
+}

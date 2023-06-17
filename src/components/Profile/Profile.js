@@ -1,5 +1,5 @@
 //IMPORT PACKAGES
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import useValidation from "../../hooks/useValidation";
 
 // IMPORT STYLES
@@ -9,12 +9,43 @@ import "./Profile.css";
 import AuthTitle from "../AuthTitle/AuthTitle";
 import Form from "../Form/Form";
 
+// IMPORT CONTEXT
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+
+// IMPORT VARIABLES
+import { USER_NAME_REG_EXP } from "../../utils/constants";
+
 // PROFILE COMPONENT
-function Profile({ user }) {
+function Profile({
+  onUpdateUser,
+  onLogout,
+  onLoading,
+  serverErrorText,
+  setServerErrorText,
+}) {
   // HOOKS
+  const currentUser = useContext(CurrentUserContext);
+  const [isCurrentUser, setUserDifference] = useState(true);
   const [isEditingBegun, setEditingStatus] = useState(false);
   const { values, errors, isFormValid, onChange, resetValidation } =
     useValidation();
+
+  // DETERMINING WHETHER THE ENTERED DATA IS THE CURRENT USER DATA
+  useEffect(() => {
+    currentUser.name !== values.name || currentUser.email !== values.email
+      ? setUserDifference(false)
+      : setUserDifference(true);
+  }, [currentUser, values]);
+
+  // SET USER DATA TO INPUTS FROM PROFILE
+  useEffect(() => {
+    resetValidation(false, currentUser);
+  }, [resetValidation, currentUser]);
+
+  // RESET SERVER ERRORS
+  useEffect(() => {
+    setServerErrorText("");
+  }, [setServerErrorText]);
 
   // HANDLER EDIT CLICK
   function handleEditClick() {
@@ -24,22 +55,23 @@ function Profile({ user }) {
   // HANDLER SUBMIT
   function handleSubmit(e) {
     e.preventDefault();
+    onUpdateUser(values);
   }
-
-  // SET USER DATA TO INPUTS FROM PROFILE
-  useEffect(() => {
-    resetValidation(true, user);
-  }, [resetValidation, user]);
 
   return (
     <main className="profile">
       <section className="profile__wrapper">
-        <AuthTitle title={`Привет, ${user.name}!`} place="edit-profile" />
+        <AuthTitle
+          title={`Привет, ${currentUser.name || ""}!`}
+          place="edit-profile"
+        />
         <Form
           name="edit-profile"
           onSubmit={handleSubmit}
           isFormValid={isFormValid}
-          buttonText="Сохранить"
+          isCurrentUser={isCurrentUser}
+          buttonText={onLoading ? "Сохранение" : "Сохранить"}
+          serverErrorText={serverErrorText}
           isEditingBegun={isEditingBegun}
         >
           <label className="form__input-wrapper form__input-wrapper_type_edit-profile">
@@ -54,6 +86,7 @@ function Profile({ user }) {
               required
               minLength="2"
               maxLength="30"
+              pattern={USER_NAME_REG_EXP}
               id="name-input"
               disabled={isEditingBegun ? false : true}
               onChange={onChange}
@@ -66,7 +99,7 @@ function Profile({ user }) {
               className={`form__input form__input_type_edit-profile ${
                 errors.email ? "form__input_style_error" : ""
               }`}
-              type="email"
+              type="text"
               name="email"
               form="edit-profile"
               required
@@ -130,6 +163,7 @@ function Profile({ user }) {
           <button
             className="profile__btn-action profile__btn-action_type_exit hover-link"
             type="button"
+            onClick={onLogout}
           >
             Выйти из аккаунта
           </button>

@@ -1,5 +1,6 @@
 // IMPORT PACKAGES
 import { useCallback, useState } from "react";
+import isEmail from "validator/es/lib/isEmail";
 
 // USE VALIDATION CUSTOM HOOK
 function useValidation() {
@@ -7,15 +8,27 @@ function useValidation() {
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
   const [isFormValid, setFormValid] = useState(false);
+
   // HANDLE INPUTS CHANGE
   function onChange(e) {
-    const { name, value } = e.target;
-    const error = e.target.validationMessage;
-    const formValid = e.target.closest("form").checkValidity();
-    setValues((values) => ({ ...values, [name]: value }));
-    setErrors((errors) => ({ ...errors, [name]: error }));
-    setFormValid(formValid);
+    const target = e.target;
+    const { value, name } = target;
+    if (name === "name" && target.validity.patternMismatch) {
+      target.setCustomValidity(
+        "Имя должно содержать только кириллицу, латиницу, пробел или дефис."
+      );
+    } else if (name === "email" && !isEmail(value)) {
+      target.setCustomValidity(
+        "Необходимо указать e-mail в формате name@domain.zone"
+      );
+    } else {
+      target.setCustomValidity("");
+    }
+    setValues({ ...values, [name]: value });
+    setErrors({ ...errors, [name]: target.validationMessage });
+    setFormValid(target.closest("form").checkValidity());
   }
+
   // HANDLE RESET VALIDATION ERRORS
   const resetValidation = useCallback(
     (isFormValid = false, values = {}, errors = {}) => {
@@ -25,6 +38,7 @@ function useValidation() {
     },
     [setFormValid, setValues, setErrors]
   );
+
   return {
     values,
     errors,

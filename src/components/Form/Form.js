@@ -9,10 +9,21 @@ function Form({
   name,
   onSubmit,
   isFormValid,
+  isCurrentUser,
   buttonText,
+  serverErrorText,
   isEditingBegun,
   ...props
 }) {
+  // HANDLER BUTTON DISABLE
+  function handleButtonDisable() {
+    if (name === "edit-profile") {
+      return isFormValid && !isCurrentUser ? false : true;
+    } else {
+      return isFormValid ? false : true;
+    }
+  }
+
   return (
     <form
       action="#"
@@ -23,7 +34,11 @@ function Form({
       onSubmit={onSubmit}
     >
       {props.children}
-      <ServerErrors isEditingBegun={isEditingBegun} place={name} />
+      <ServerErrors
+        isEditingBegun={isEditingBegun}
+        place={name}
+        serverErrorText={serverErrorText}
+      />
       <button
         type="submit"
         form={`${name}`}
@@ -32,7 +47,7 @@ function Form({
             ? "form__btn-submit_hidden"
             : ""
         } hover-button`}
-        disabled={isFormValid ? false : true}
+        disabled={handleButtonDisable()}
       >
         {buttonText}
       </button>

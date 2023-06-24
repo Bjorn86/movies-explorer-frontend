@@ -23,24 +23,22 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 // IMPORT API'S
 import * as mainApi from "../../utils/mainApi";
+import * as moviesApi from "../../utils/moviesApi";
 
-// !TEMP: IMPORT TEMP FILES
-import moviesCards from "../../temp/data.json";
-import moviesSavedCards from "../../temp/savedData.json";
+// IMPORT VARIABLES
+import { MOVIES_API_URL } from "../../utils/constants";
 
 // APP COMPONENT
 function App() {
   // HOOKS
   const [currentUser, setCurrentUser] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
-  const [cards, setCards] = useState([]);
   const [savedCards, setSavedCards] = useState([]);
-  const [isLiked, setLike] = useState(false); // !TEMP: Временный вариант
   const [isSideMenuOpen, setSideMenuStatus] = useState(false);
-  const [isFilterOn, setFilter] = useState(false);
   const [isLoading, setLoading] = useState(false);
   const [isPreloaderActive, setPreloaderClass] = useState(true);
   const [serverErrorText, setServerErrorText] = useState("");
+  const [isSearchError, setSearchError] = useState(false);
   const aboutOnClickRef = useRef(null);
   const navigate = useNavigate();
 
@@ -94,13 +92,15 @@ function App() {
     }
   }
 
-  // HANDLE USER LOGOUT
+  // HANDLER USER LOGOUT
   async function handleUserLogOut() {
     try {
       const data = await mainApi.logout();
       if (data) {
         setLoggedIn(false);
         setCurrentUser({});
+        setSavedCards([]);
+        localStorage.clear();
         navigate("/", { replace: true });
       }
     } catch (err) {
@@ -108,12 +108,12 @@ function App() {
     }
   }
 
-  // USER LOGIN CHECK
-  const userLoginCheck = useCallback(async () => {
+  // HANDLER USER LOGIN CHECK
+  const handleUserLoginCheck = useCallback(async () => {
     try {
       const userData = await mainApi.getUserInfo();
       if (!userData) {
-        throw new Error("Необходима авторизация"); // TODO Подумать как использовать такой же (401) ответ от сервера
+        throw new Error("Необходима авторизация");
       }
       setLoggedIn(true);
       setCurrentUser(userData);
@@ -124,19 +124,87 @@ function App() {
     }
   }, []);
 
+  // HANDLER FOR GET ALL MOVIES
+  async function handleGetAllMovies() {
+    setLoading(true);
+    setSearchError(false);
+    try {
+      const moviesData = await moviesApi.getCards();
+      if (moviesData) {
+        return moviesData;
+      }
+    } catch (err) {
+      setSearchError(true);
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  // HANDLER GET USER MOVIES CARDS
+  const handleGetUserMoviesCards = useCallback(async () => {
+    try {
+      const moviesData = await mainApi.getCardsByOwner();
+      if (moviesData) {
+        setSavedCards(moviesData);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  }, []);
+
+  // HANDLER SAVE MOVIE
+  async function handleSaveMovie(movie) {
+    try {
+      const movieData = await mainApi.createMovieCard({
+        country: movie.country,
+        director: movie.director,
+        duration: movie.duration,
+        year: movie.year,
+        description: movie.description,
+        image: `${MOVIES_API_URL}${movie.image.url}`,
+        trailerLink: movie.trailerLink,
+        thumbnail: `${MOVIES_API_URL}${movie.image.formats.thumbnail.url}`,
+        movieId: movie.id,
+        nameRU: movie.nameRU,
+        nameEN: movie.nameEN,
+      });
+      if (movieData) {
+        setSavedCards([movieData, ...savedCards]);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  // HANDLER DELETE MOVIES
+  async function handleDeleteMovie(movie) {
+    const savedMovie = savedCards.find(
+      (card) => card.movieId === movie.id || card.movieId === movie.movieId
+    );
+    try {
+      const data = await mainApi.deleteCard(savedMovie._id);
+      if (data) {
+        setSavedCards((state) =>
+          state.filter((card) => card._id !== savedMovie._id)
+        );
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
   // CHECK USER LOGGED IN
   useEffect(() => {
-    // TODO Не совсем нравится как происходит этот процесс, но по другому либо вечный прелоадер, либо выкидывает с защищённых роутов
-    userLoginCheck();
-  }, [loggedIn, userLoginCheck]);
+    handleUserLoginCheck();
+  }, [loggedIn, handleUserLoginCheck]);
 
-  // !TEMP: SET DATA
+  // SET USER SAVED MOVIES CARDS
   useEffect(() => {
     if (loggedIn) {
-      setCards(moviesCards);
-      setSavedCards(moviesSavedCards);
+      handleGetUserMoviesCards();
     }
-  }, [loggedIn]);
+  }, [loggedIn, handleGetUserMoviesCards]);
 
   // HANDLER OPEN SIDE MENU
   function handleOpenSideMenu() {
@@ -148,16 +216,6 @@ function App() {
     setSideMenuStatus(false);
   }
 
-  // HANDLER FILTER CHANGE
-  function handleFilterChange(evt) {
-    setFilter(evt);
-  }
-
-  // !TEMP: HANDLER CARD LIKE
-  function handleCardLike() {
-    setLike(!isLiked);
-  }
-
   // HANDLER SMOOTH SCROLL EFFECT
   function handleScrollEffect(targetRef) {
     targetRef.current.scrollIntoView({
@@ -166,65 +224,77 @@ function App() {
     });
   }
 
-  /* if (isPreloaderActive) return <Preloader />; */ // TODO Поменять фоновый цвет
-
-  return isPreloaderActive ? (
-    <Preloader />
-  ) : (
+  return (
     <div className="app__content">
-      <CurrentUserContext.Provider value={currentUser}>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <AppLayout
-                onHamburgerClick={handleOpenSideMenu}
-                loggedIn={loggedIn}
+      {isPreloaderActive ? (
+        <Preloader />
+      ) : (
+        <CurrentUserContext.Provider value={currentUser}>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <AppLayout
+                  onHamburgerClick={handleOpenSideMenu}
+                  loggedIn={loggedIn}
+                />
+              }
+            >
+              <Route
+                index
+                element={
+                  <Main
+                    onAnchorClick={handleScrollEffect}
+                    aboutRef={aboutOnClickRef}
+                  />
+                }
               />
-            }
-          >
+              <Route
+                path="/movies"
+                element={
+                  <ProtectedRoute
+                    element={Movies}
+                    savedCards={savedCards}
+                    onSearch={handleGetAllMovies}
+                    isSearchError={isSearchError}
+                    onCardSave={handleSaveMovie}
+                    onCardDelete={handleDeleteMovie}
+                    isLoading={isLoading}
+                    loggedIn={loggedIn}
+                  />
+                }
+              />
+              <Route
+                path="/saved-movies"
+                element={
+                  <ProtectedRoute
+                    element={SavedMovies}
+                    savedCards={savedCards}
+                    onCardDelete={handleDeleteMovie}
+                    loggedIn={loggedIn}
+                  />
+                }
+              />
+              <Route
+                path="/profile"
+                element={
+                  <ProtectedRoute
+                    element={Profile}
+                    onUpdateUser={handleUserUpdate}
+                    onLogout={handleUserLogOut}
+                    onLoading={isLoading}
+                    serverErrorText={serverErrorText}
+                    setServerErrorText={setServerErrorText}
+                    loggedIn={loggedIn}
+                  />
+                }
+              />
+            </Route>
             <Route
-              index
+              path="/signin"
               element={
-                <Main
-                  onAnchorClick={handleScrollEffect}
-                  aboutRef={aboutOnClickRef}
-                />
-              }
-            />
-            <Route
-              path="/movies"
-              element={
-                <ProtectedRoute
-                  element={Movies}
-                  cards={cards}
-                  onFilterChange={handleFilterChange}
-                  isFilterOn={isFilterOn}
-                  isLiked={isLiked}
-                  onCardLike={handleCardLike}
-                  loggedIn={loggedIn}
-                />
-              }
-            />
-            <Route
-              path="/saved-movies"
-              element={
-                <ProtectedRoute
-                  element={SavedMovies}
-                  cards={savedCards}
-                  onFilterChange={handleFilterChange}
-                  isFilterOn={isFilterOn}
-                  loggedIn={loggedIn}
-                />
-              }
-            />
-            <Route
-              path="/profile"
-              element={
-                <ProtectedRoute
-                  element={Profile}
-                  onUpdateUser={handleUserUpdate}
-                  onLogout={handleUserLogOut}
+                <Login
+                  onLogin={handleUserAuthorization}
                   onLoading={isLoading}
                   serverErrorText={serverErrorText}
                   setServerErrorText={setServerErrorText}
@@ -232,39 +302,26 @@ function App() {
                 />
               }
             />
-          </Route>
-          <Route
-            path="/signin"
-            element={
-              <Login
-                onLogin={handleUserAuthorization}
-                onLoading={isLoading}
-                serverErrorText={serverErrorText}
-                setServerErrorText={setServerErrorText}
-                loggedIn={loggedIn}
-              />
-            }
+            <Route
+              path="/signup"
+              element={
+                <Registr
+                  onRegistr={handleUserRegistration}
+                  onLoading={isLoading}
+                  serverErrorText={serverErrorText}
+                  setServerErrorText={setServerErrorText}
+                  loggedIn={loggedIn}
+                />
+              }
+            />
+            <Route path="/*" element={<NotFound />} />
+          </Routes>
+          <HamburgerMenu
+            isSideMenuOpen={isSideMenuOpen}
+            onClose={handleCloseSideMenu}
           />
-          <Route
-            path="/signup"
-            element={
-              <Registr
-                onRegistr={handleUserRegistration}
-                onLoading={isLoading}
-                serverErrorText={serverErrorText}
-                setServerErrorText={setServerErrorText}
-                loggedIn={loggedIn}
-              />
-            }
-          />
-          <Route path="/*" element={<NotFound />} />{" "}
-          {/* TODO Защищать или нет ProtectedRoute? */}
-        </Routes>
-        <HamburgerMenu
-          isSideMenuOpen={isSideMenuOpen}
-          onClose={handleCloseSideMenu}
-        />
-      </CurrentUserContext.Provider>
+        </CurrentUserContext.Provider>
+      )}
     </div>
   );
 }

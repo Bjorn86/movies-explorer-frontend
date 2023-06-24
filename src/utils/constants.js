@@ -7,3 +7,6 @@ export const MAIN_API_URL = "http://localhost:3000"; // TODO Заменить н
 
 // REG EXP
 export const USER_NAME_REG_EXP = "^[A-Za-zА-Яа-яЁё\\-\\s]+$";
+
+// OTHER VARIABLES
+export const SHORT_MOVIE = 40;

@@ -1,7 +1,7 @@
 // IMPORT PACKAGES
 import { useEffect } from "react";
 import { Navigate } from "react-router-dom";
-import useValidation from "../../hooks/useValidation";
+import useFormWithValidation from "../../hooks/useFormWithValidation";
 
 // IMPORT STYLES
 import "./Register.css";
@@ -21,7 +21,7 @@ function Registr({
   loggedIn,
 }) {
   // HOOKS
-  const { values, errors, isFormValid, onChange } = useValidation();
+  const { values, errors, isFormValid, onChange } = useFormWithValidation();
 
   // RESET SERVER ERRORS
   useEffect(() => {

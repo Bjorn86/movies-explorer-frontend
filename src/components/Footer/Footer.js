@@ -9,7 +9,9 @@ function Footer() {
         <p className="footer__text">
           Учебный проект Яндекс.Практикум х BeatFilm.
         </p>
-        <p className="footer__copyright">&copy; {new Date().getFullYear()}</p>
+        <p className="footer__copyright">
+          &copy; {new Date().getFullYear()} Данила Легкобытов
+        </p>
         <ul className="footer__list">
           <li className="footer__list-item">
             <a

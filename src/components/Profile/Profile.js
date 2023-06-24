@@ -1,6 +1,6 @@
 //IMPORT PACKAGES
 import { useEffect, useState, useContext } from "react";
-import useValidation from "../../hooks/useValidation";
+import useFormWithValidation from "../../hooks/useFormWithValidation";
 
 // IMPORT STYLES
 import "./Profile.css";
@@ -28,7 +28,7 @@ function Profile({
   const [isCurrentUser, setUserDifference] = useState(true);
   const [isEditingBegun, setEditingStatus] = useState(false);
   const { values, errors, isFormValid, onChange, resetValidation } =
-    useValidation();
+    useFormWithValidation();
 
   // DETERMINING WHETHER THE ENTERED DATA IS THE CURRENT USER DATA
   useEffect(() => {

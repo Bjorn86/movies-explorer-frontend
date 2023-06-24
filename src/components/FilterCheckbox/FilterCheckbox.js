@@ -11,7 +11,7 @@ function FilterCheckbox({ onFilterChange, isFilterOn }) {
         form="search-and-filter"
         name="toggle"
         type="checkbox"
-        value={isFilterOn}
+        checked={isFilterOn}
         onChange={(evt) => onFilterChange(evt.target.checked)}
       />
       <span className="filter-checkbox__track"></span>

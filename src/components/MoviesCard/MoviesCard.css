@@ -4,7 +4,18 @@
   flex-direction: column;
 }
 
+.movies-card__link {
+  font-family: var(--main-font);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.21;
+  color: var(--white);
+  text-decoration: none;
+  transition: var(--opacity);
+}
+
 .movies-card__img {
+  width: 100%;
   height: 151px;
   object-fit: cover;
   font-family: var(--main-font);

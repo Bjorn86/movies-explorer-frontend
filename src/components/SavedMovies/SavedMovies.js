@@ -18,25 +18,31 @@ function SavedMovies({ savedCards, onCardDelete }) {
   const [filteredCards, setFilteredCards] = useState([]);
   const [isFilterOn, setFilter] = useState(false);
   const [isCardsNotFound, setCardsNotFound] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
 
-  // HANDLER SEARCH AND FILTERING SAVED MOVIES
+  // HANDLER ON SEARCH SUBMIT
   const handleOnSearchSubmit = useCallback(
     (searchQuery) => {
       setCardsNotFound(false);
+      setIsSearching(true);
       if (savedCards.length) {
         const found = handleMovieSearch(savedCards, searchQuery, true);
         setFilteredCards(found);
         if (!found.length) {
           setCardsNotFound(true);
+          setIsSearching(false);
           setCardsForRender(found);
         } else {
           const filtered = handleMovieFiltering(found, isFilterOn, true);
+          setIsSearching(false);
           setCardsForRender(filtered);
           if (!filtered.length) {
+            setIsSearching(false);
             setCardsNotFound(true);
           }
         }
       } else {
+        setIsSearching(false);
         setCardsNotFound(true);
       }
     },
@@ -103,6 +109,7 @@ function SavedMovies({ savedCards, onCardDelete }) {
         onSearch={handleOnSearchSubmit}
         onFilterChange={handleOnFilterClick}
         isFilterOn={isFilterOn}
+        isSearching={isSearching}
       />
       <MoviesCardList
         cards={cardsForRender}

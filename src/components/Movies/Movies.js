@@ -31,6 +31,7 @@ function Movies({
   const [isFilterOn, setFilter] = useState(false);
   const [isCardsNotFound, setCardsNotFound] = useState(false);
   const [cardsRenderParams, setCardsRenderParams] = useState({});
+  const [isSearching, setIsSearching] = useState(false);
   const screenWidth = useResizeScreen();
 
   // HANDLER SEARCH AND FILTERING MOVIES
@@ -40,11 +41,14 @@ function Movies({
       setFoundCards(found);
       if (!found.length) {
         setCardsNotFound(true);
+        setIsSearching(false);
         setCardsForRender(found);
       } else {
         const filtered = handleMovieFiltering(found, isFilterOn, false);
+        setIsSearching(false);
         setCardsForRender(filtered);
         if (!filtered.length) {
+          setIsSearching(false);
           setCardsNotFound(true);
         }
       }
@@ -52,10 +56,11 @@ function Movies({
     [isFilterOn]
   );
 
-  // HANDLER SEARCH AND FILTERING MOVIES
+  // HANDLER ON SEARCH SUBMIT
   const handleOnSearchSubmit = useCallback(
     async (searchQuery) => {
       setCardsNotFound(false);
+      setIsSearching(true);
       if (!initialCards.length) {
         const moviesData = await onSearch();
         if (moviesData) {
@@ -131,6 +136,7 @@ function Movies({
         onSearch={handleOnSearchSubmit}
         onFilterChange={handleOnFilterClick}
         isFilterOn={isFilterOn}
+        isSearching={isSearching}
       />
       <MoviesCardList
         cards={cardsForRender}

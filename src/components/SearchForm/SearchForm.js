@@ -9,7 +9,7 @@ import "./SearchForm.css";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 
 // SEARCH FORM COMPONENT
-function SearchForm({ onSearch, onFilterChange, isFilterOn }) {
+function SearchForm({ onSearch, onFilterChange, isFilterOn, isSearching }) {
   // HOOKS
   const [searchQuery, setSearchQuery] = useState("");
   const [queryError, setQueryError] = useState("");
@@ -70,12 +70,14 @@ function SearchForm({ onSearch, onFilterChange, isFilterOn }) {
           type="search"
           autoComplete="off"
           autoCapitalize="off"
+          disabled={isSearching ? true : false}
           onChange={(e) => setSearchQuery(e.target.value)}
           value={searchQuery || ""}
         />
         <FilterCheckbox
           onFilterChange={onFilterChange}
           isFilterOn={isFilterOn}
+          isSearching={isSearching}
         />
         <button
           className="search-form__btn-submit hover-button"

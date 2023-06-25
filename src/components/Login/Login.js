@@ -54,6 +54,7 @@ function Login({
             form="login"
             required
             id="email-input"
+            disabled={onLoading ? true : false}
             onChange={onChange}
             value={values.email || ""}
           />
@@ -77,6 +78,7 @@ function Login({
             required
             minLength="6"
             maxLength="30"
+            disabled={onLoading ? true : false}
             id="password-input"
             onChange={onChange}
             value={values.password || ""}

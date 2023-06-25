@@ -1,6 +1,7 @@
 // IMPORT PACKAGES
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
+import useNotification from "../../hooks/useNotification";
 
 // IMPORT STYLES
 import "./App.css";
@@ -41,6 +42,7 @@ function App() {
   const [isSearchError, setSearchError] = useState(false);
   const aboutOnClickRef = useRef(null);
   const navigate = useNavigate();
+  const dispatch = useNotification();
 
   // HANDLER USER UPDATE
   async function handleUserUpdate({ email, name }) {
@@ -49,6 +51,10 @@ function App() {
       const userData = await mainApi.updateUserInfo({ email, name });
       if (userData) {
         setCurrentUser(userData);
+        dispatch({
+          type: "SUCCESS",
+          message: "Профиль успешно обновлён",
+        });
       }
     } catch (err) {
       setServerErrorText(err);
@@ -112,11 +118,10 @@ function App() {
   const handleUserLoginCheck = useCallback(async () => {
     try {
       const userData = await mainApi.getUserInfo();
-      if (!userData) {
-        throw new Error("Необходима авторизация");
+      if (userData) {
+        setLoggedIn(true);
+        setCurrentUser(userData);
       }
-      setLoggedIn(true);
-      setCurrentUser(userData);
     } catch (err) {
       console.error(err);
     } finally {
@@ -216,14 +221,6 @@ function App() {
     setSideMenuStatus(false);
   }
 
-  // HANDLER SMOOTH SCROLL EFFECT
-  function handleScrollEffect(targetRef) {
-    targetRef.current.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  }
-
   return (
     <div className="app__content">
       {isPreloaderActive ? (
@@ -240,15 +237,7 @@ function App() {
                 />
               }
             >
-              <Route
-                index
-                element={
-                  <Main
-                    onAnchorClick={handleScrollEffect}
-                    aboutRef={aboutOnClickRef}
-                  />
-                }
-              />
+              <Route index element={<Main aboutRef={aboutOnClickRef} />} />
               <Route
                 path="/movies"
                 element={

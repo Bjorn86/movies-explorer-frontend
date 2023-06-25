@@ -70,7 +70,7 @@ function Profile({
           onSubmit={handleSubmit}
           isFormValid={isFormValid}
           isCurrentUser={isCurrentUser}
-          buttonText={onLoading ? "Сохранение" : "Сохранить"}
+          buttonText={onLoading ? "Сохранение..." : "Сохранить"}
           serverErrorText={serverErrorText}
           isEditingBegun={isEditingBegun}
         >
@@ -88,7 +88,7 @@ function Profile({
               maxLength="30"
               pattern={USER_NAME_REG_EXP}
               id="name-input"
-              disabled={isEditingBegun ? false : true}
+              disabled={isEditingBegun && !onLoading ? false : true}
               onChange={onChange}
               value={values.name || ""}
             />
@@ -104,7 +104,7 @@ function Profile({
               form="edit-profile"
               required
               id="email-input"
-              disabled={isEditingBegun ? false : true}
+              disabled={isEditingBegun && !onLoading ? false : true}
               onChange={onChange}
               value={values.email || ""}
             />

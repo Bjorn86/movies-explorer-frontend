@@ -71,3 +71,16 @@ export function handleSavedStatus(savedCards, movieCard) {
     return card.movieId === (movieCard.id || movieCard.movieId);
   });
 }
+
+// GENERATE A UNIQUE KEY
+export function generateKey(prefix) {
+  return `${prefix}-${new Date().getTime()}`;
+}
+
+// HANDLER SMOOTH SCROLL EFFECT
+export function handleScrollEffect(targetRef) {
+  targetRef.current.scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+  });
+}

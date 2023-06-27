@@ -16,6 +16,7 @@ function AuthScreen({
   onSubmit,
   isFormValid,
   buttonText,
+  serverErrorText,
   ...props
 }) {
   return (
@@ -27,6 +28,7 @@ function AuthScreen({
         onSubmit={onSubmit}
         isFormValid={isFormValid}
         buttonText={buttonText}
+        serverErrorText={serverErrorText}
       >
         {props.children}
       </Form>

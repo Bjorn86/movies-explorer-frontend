@@ -1,5 +1,7 @@
 // IMPORT PACKAGES
-import useValidation from "../../hooks/useValidation";
+import { useEffect } from "react";
+import { Navigate } from "react-router-dom";
+import useFormWithValidation from "../../hooks/useFormWithValidation";
 
 // IMPORT STYLES
 import "./Login.css";
@@ -8,23 +10,38 @@ import "./Login.css";
 import AuthScreen from "../AuthScreen/AuthScreen";
 
 // LOGIN COMPONENT
-function Login() {
+function Login({
+  onLogin,
+  onLoading,
+  serverErrorText,
+  setServerErrorText,
+  loggedIn,
+}) {
   // HOOKS
-  const { values, errors, isFormValid, onChange } = useValidation();
+  const { values, errors, isFormValid, onChange } = useFormWithValidation();
+
+  // RESET SERVER ERRORS
+  useEffect(() => {
+    setServerErrorText("");
+  }, [setServerErrorText]);
 
   // HANDLER SUBMIT
   function handleSubmit(e) {
     e.preventDefault();
+    onLogin(values);
   }
 
-  return (
+  return loggedIn ? (
+    <Navigate to="/" replace />
+  ) : (
     <main className="login">
       <AuthScreen
         title="Рады видеть!"
         name="login"
         onSubmit={handleSubmit}
         isFormValid={isFormValid}
-        buttonText="Войти"
+        buttonText={onLoading ? "Вход..." : "Войти"}
+        serverErrorText={serverErrorText}
       >
         <label className="form__input-wrapper">
           E-mail
@@ -32,11 +49,12 @@ function Login() {
             className={`form__input ${
               errors.email ? "form__input_style_error" : ""
             }`}
-            type="email"
+            type="text"
             name="email"
             form="login"
             required
             id="email-input"
+            disabled={onLoading ? true : false}
             onChange={onChange}
             value={values.email || ""}
           />
@@ -60,6 +78,7 @@ function Login() {
             required
             minLength="6"
             maxLength="30"
+            disabled={onLoading ? true : false}
             id="password-input"
             onChange={onChange}
             value={values.password || ""}

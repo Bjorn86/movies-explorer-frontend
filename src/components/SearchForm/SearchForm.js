@@ -1,3 +1,7 @@
+//IMPORT PACKAGES
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+
 // IMPORT STYLES
 import "./SearchForm.css";
 
@@ -5,10 +9,44 @@ import "./SearchForm.css";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 
 // SEARCH FORM COMPONENT
-function SearchForm({ onFilterChange, isFilterOn }) {
+function SearchForm({ onSearch, onFilterChange, isFilterOn, isSearching }) {
+  // HOOKS
+  const [searchQuery, setSearchQuery] = useState("");
+  const [queryError, setQueryError] = useState("");
+  const location = useLocation();
+
+  // SUBSTITUTING A SEARCH QUERY FROM THE LOCAL STORAGE
+  useEffect(() => {
+    if (
+      location.pathname === "/movies" &&
+      localStorage.getItem("moviesSearchQuery")
+    ) {
+      const savedSearchQuery = localStorage.getItem("moviesSearchQuery");
+      setSearchQuery(savedSearchQuery);
+    } else if (
+      location.pathname === "/saved-movies" &&
+      localStorage.getItem("savedMoviesSearchQuery")
+    ) {
+      const savedSearchQuery = localStorage.getItem("savedMoviesSearchQuery");
+      setSearchQuery(savedSearchQuery);
+    }
+  }, [location.pathname]);
+
+  // RESET AN EMPTY REQUEST ERROR
+  useEffect(() => {
+    setQueryError("");
+  }, [searchQuery]);
+
   // HANDLER SUBMIT
   function handleSubmit(e) {
     e.preventDefault();
+    if (location.pathname === "/movies") {
+      searchQuery
+        ? onSearch(searchQuery)
+        : setQueryError("Нужно ввести ключевое слово");
+    } else {
+      onSearch(searchQuery);
+    }
   }
 
   return (
@@ -31,12 +69,15 @@ function SearchForm({ onFilterChange, isFilterOn }) {
           placeholder="Фильм"
           type="search"
           autoComplete="off"
-          autoCorrect="off"
           autoCapitalize="off"
+          disabled={isSearching ? true : false}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          value={searchQuery || ""}
         />
         <FilterCheckbox
           onFilterChange={onFilterChange}
           isFilterOn={isFilterOn}
+          isSearching={isSearching}
         />
         <button
           className="search-form__btn-submit hover-button"
@@ -46,6 +87,7 @@ function SearchForm({ onFilterChange, isFilterOn }) {
           Найти
         </button>
       </form>
+      <span className="search-form__error">{queryError}</span>
     </section>
   );
 }

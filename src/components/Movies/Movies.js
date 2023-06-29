@@ -16,14 +16,7 @@ import { handleMovieFiltering, handleMovieSearch } from "../../utils/utils";
 import { CARDS_PARAMS_RENDER } from "../../utils/config";
 
 //MOVIES COMPONENT
-function Movies({
-  savedCards,
-  onSearch,
-  isSearchError,
-  onCardSave,
-  onCardDelete,
-  isLoading,
-}) {
+function Movies({ savedCards, onSearch, onCardSave, onCardDelete, isLoading }) {
   // HOOKS
   const [initialCards, setInitialCards] = useState([]);
   const [cardsForRender, setCardsForRender] = useState([]);
@@ -143,7 +136,6 @@ function Movies({
         savedCards={savedCards}
         cardsRenderParams={cardsRenderParams}
         isCardsNotFound={isCardsNotFound}
-        isSearchError={isSearchError}
         onCardSave={onCardSave}
         onCardDelete={onCardDelete}
         isLoading={isLoading}

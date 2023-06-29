@@ -40,7 +40,7 @@
   color: var(--black);
   padding: 8px 20px;
   border-radius: 3px;
-  background-color: var(--block-bg-color-green);
+  background-color: var(--green);
 }
 
 .header__btn-hamburger {

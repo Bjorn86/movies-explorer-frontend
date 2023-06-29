@@ -57,7 +57,7 @@
 }
 
 .filter-checkbox__toggle:checked + .filter-checkbox__track {
-  background-color: var(--block-bg-color-green);
+  background-color: var(--green);
 }
 
 .filter-checkbox__toggle:checked + .filter-checkbox__track::before {

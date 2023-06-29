@@ -1,5 +1,4 @@
 // IMPORT PACKAGES
-import { useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import useFormWithValidation from "../../hooks/useFormWithValidation";
 
@@ -10,20 +9,9 @@ import "./Login.css";
 import AuthScreen from "../AuthScreen/AuthScreen";
 
 // LOGIN COMPONENT
-function Login({
-  onLogin,
-  onLoading,
-  serverErrorText,
-  setServerErrorText,
-  loggedIn,
-}) {
+function Login({ onLogin, onLoading, loggedIn }) {
   // HOOKS
   const { values, errors, isFormValid, onChange } = useFormWithValidation();
-
-  // RESET SERVER ERRORS
-  useEffect(() => {
-    setServerErrorText("");
-  }, [setServerErrorText]);
 
   // HANDLER SUBMIT
   function handleSubmit(e) {
@@ -41,7 +29,6 @@ function Login({
         onSubmit={handleSubmit}
         isFormValid={isFormValid}
         buttonText={onLoading ? "Вход..." : "Войти"}
-        serverErrorText={serverErrorText}
       >
         <label className="form__input-wrapper">
           E-mail

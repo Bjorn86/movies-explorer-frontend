@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from "react";
 import "./Notification.css";
 
 // NOTIFICATIONS COMPONENT
-function Notification({ dispatch, noteId, type, message }) {
+function Notification({ dispatch, noteId, type, title, message }) {
   // HOOKS
   const [exit, setExit] = useState(false);
   const [width, setWidth] = useState(0);
@@ -50,9 +50,12 @@ function Notification({ dispatch, noteId, type, message }) {
   }, [width, handleCloseNotification]);
 
   // TIMER START
-  // !FOR REVIEW INFO: Из-за строгого режима в режиме разработки, эффект применяется дважды, из-за чего
-  // ! невозможно остановить таймер наведением не него курсора. Чтобы посмотреть реальное поведение
-  // !  следует отключить строгий режим. После сборки проекта, на проде, такого поведения нет.
+  /* 
+  Due to <React.StrictMode> in development mode,useEffect is started twice, which makes
+  it impossible to stop the timer by hovering the mouse cursor. You can get acquainted
+  with the actual behavior of the component by deleting <React.StrictMode>, or using
+  the build version
+  */
   useEffect(() => {
     handleStartTimer();
   }, []);
@@ -63,6 +66,35 @@ function Notification({ dispatch, noteId, type, message }) {
       onMouseEnter={handlePauseTimer}
       onMouseLeave={handleStartTimer}
     >
+      <div className="notification__wrapper">
+        <p
+          className={`notification__title ${
+            type === "SUCCESS"
+              ? "notification__title_type_success"
+              : "notification__title_type_error"
+          }`}
+        >
+          {title}
+        </p>
+        <button
+          className="notification__btn-close hover-button"
+          type="button"
+          aria-label="Закрыть"
+          onClick={handleCloseNotification}
+        >
+          <svg
+            className="movies-card__btn-del-img"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill="#fff"
+              fillRule="evenodd"
+              d="m4 5.06 2.652 2.652 1.06-1.06L5.061 4l2.651-2.652-1.06-1.06L4 2.939 1.348.287.288 1.348 2.939 4 .287 6.652l1.061 1.06L4 5.061Z"
+              clipRule="evenodd"
+            />
+          </svg>
+        </button>
+      </div>
       <p className="notification__text">{message}</p>
       <div
         className={`notification__timer ${

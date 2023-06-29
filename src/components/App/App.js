@@ -38,8 +38,6 @@ function App() {
   const [isSideMenuOpen, setSideMenuStatus] = useState(false);
   const [isLoading, setLoading] = useState(false);
   const [isPreloaderActive, setPreloaderClass] = useState(true);
-  const [serverErrorText, setServerErrorText] = useState("");
-  const [isSearchError, setSearchError] = useState(false);
   const aboutOnClickRef = useRef(null);
   const navigate = useNavigate();
   const dispatch = useNotification();
@@ -53,11 +51,16 @@ function App() {
         setCurrentUser(userData);
         dispatch({
           type: "SUCCESS",
+          title: "Выполнено",
           message: "Профиль успешно обновлён",
         });
       }
     } catch (err) {
-      setServerErrorText(err);
+      dispatch({
+        type: "ERROR",
+        title: "Ошибка",
+        message: `${err}`,
+      });
       console.error(err);
     } finally {
       setLoading(false);
@@ -74,7 +77,11 @@ function App() {
         navigate("/movies", { replace: true });
       }
     } catch (err) {
-      setServerErrorText(err);
+      dispatch({
+        type: "ERROR",
+        title: "Ошибка",
+        message: `${err}`,
+      });
       console.error(err);
     } finally {
       setLoading(false);
@@ -91,7 +98,11 @@ function App() {
         navigate("/movies", { replace: true });
       }
     } catch (err) {
-      setServerErrorText(err);
+      dispatch({
+        type: "ERROR",
+        title: "Ошибка",
+        message: `${err}`,
+      });
       console.error(err);
     } finally {
       setLoading(false);
@@ -132,14 +143,19 @@ function App() {
   // HANDLER FOR GET ALL MOVIES
   async function handleGetAllMovies() {
     setLoading(true);
-    setSearchError(false);
     try {
       const moviesData = await moviesApi.getCards();
       if (moviesData) {
         return moviesData;
       }
     } catch (err) {
-      setSearchError(true);
+      dispatch({
+        type: "ERROR",
+        title: "Ошибка",
+        message: `Во время запроса произошла ошибка. Возможно, 
+        проблема с соединением или сервер недоступен. Подождите 
+        немного и попробуйте ещё раз`,
+      });
       console.error(err);
     } finally {
       setLoading(false);
@@ -195,6 +211,11 @@ function App() {
         );
       }
     } catch (err) {
+      dispatch({
+        type: "ERROR",
+        title: "Ошибка",
+        message: `${err}`,
+      });
       console.error(err);
     }
   }
@@ -245,7 +266,6 @@ function App() {
                     element={Movies}
                     savedCards={savedCards}
                     onSearch={handleGetAllMovies}
-                    isSearchError={isSearchError}
                     onCardSave={handleSaveMovie}
                     onCardDelete={handleDeleteMovie}
                     isLoading={isLoading}
@@ -272,8 +292,6 @@ function App() {
                     onUpdateUser={handleUserUpdate}
                     onLogout={handleUserLogOut}
                     onLoading={isLoading}
-                    serverErrorText={serverErrorText}
-                    setServerErrorText={setServerErrorText}
                     loggedIn={loggedIn}
                   />
                 }
@@ -285,8 +303,6 @@ function App() {
                 <Login
                   onLogin={handleUserAuthorization}
                   onLoading={isLoading}
-                  serverErrorText={serverErrorText}
-                  setServerErrorText={setServerErrorText}
                   loggedIn={loggedIn}
                 />
               }
@@ -297,8 +313,6 @@ function App() {
                 <Registr
                   onRegistr={handleUserRegistration}
                   onLoading={isLoading}
-                  serverErrorText={serverErrorText}
-                  setServerErrorText={setServerErrorText}
                   loggedIn={loggedIn}
                 />
               }

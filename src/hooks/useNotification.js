@@ -1,11 +1,9 @@
 // IMPORT PACKAGES
 import { useContext } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 // IMPORT CONTEXT
 import { NotificationContext } from "../contexts/NotificationContext";
-
-// IMPORT UTILS
-import { generateKey } from "../utils/utils";
 
 // USE NOTIFICATION HOOK
 function useNotification() {
@@ -14,7 +12,7 @@ function useNotification() {
     dispatch({
       type: "ADD_NOTIFICATION",
       payload: {
-        id: generateKey("note"),
+        id: uuidv4(),
         ...props,
       },
     });

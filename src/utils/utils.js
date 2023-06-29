@@ -72,11 +72,6 @@ export function handleSavedStatus(savedCards, movieCard) {
   });
 }
 
-// GENERATE A UNIQUE KEY
-export function generateKey(prefix) {
-  return `${prefix}-${new Date().getTime()}`;
-}
-
 // HANDLER SMOOTH SCROLL EFFECT
 export function handleScrollEffect(targetRef) {
   targetRef.current.scrollIntoView({

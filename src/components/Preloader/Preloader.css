@@ -79,7 +79,7 @@
 }
 
 .preloader__round::after {
-  background: var(--block-bg-color-green);
+  background: var(--green);
   animation: preloader-inside-white 1s ease-in-out infinite;
 }
 

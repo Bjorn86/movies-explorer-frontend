@@ -18,7 +18,6 @@ function MoviesCardList({
   savedCards,
   cardsRenderParams,
   isCardsNotFound,
-  isSearchError,
   onCardSave,
   onCardDelete,
   isLoading,
@@ -64,13 +63,6 @@ function MoviesCardList({
       {isLoading && cards.length === 0 && <Preloader />}
       {isCardsNotFound && (
         <p className="movies-card-list__info">Ничего не&nbsp;найдено</p>
-      )}
-      {isSearchError && (
-        <p className="movies-card-list__info">
-          Во&nbsp;время запроса произошла ошибка. Возможно, проблема
-          с&nbsp;соединением или сервер недоступен. Подождите немного
-          и&nbsp;попробуйте ещё раз
-        </p>
       )}
       {cards.length !== 0 && !isCardsNotFound && (
         <>

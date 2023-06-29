@@ -34,6 +34,7 @@ function NotificationsProvider({ ...props }) {
               dispatch={dispatch}
               noteId={note.id}
               type={note.type}
+              title={note.title}
               message={note.message}
             />
           );

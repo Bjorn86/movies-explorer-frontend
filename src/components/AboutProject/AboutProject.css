@@ -63,7 +63,7 @@
   line-height: 1.21;
   text-align: center;
   color: var(--black);
-  background-color: var(--block-bg-color-green);
+  background-color: var(--green);
 }
 
 .about-project__stage-text_type_second {

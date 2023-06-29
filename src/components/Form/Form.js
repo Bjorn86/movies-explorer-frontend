@@ -1,9 +1,6 @@
 // IMPORT STYLES
 import "./Form.css";
 
-// IMPORT COMPONENTS
-import ServerErrors from "../ServerErrors/ServerErrors";
-
 // FORM COMPONENT
 function Form({
   name,
@@ -11,7 +8,6 @@ function Form({
   isFormValid,
   isCurrentUser,
   buttonText,
-  serverErrorText,
   isEditingBegun,
   ...props
 }) {
@@ -34,15 +30,10 @@ function Form({
       onSubmit={onSubmit}
     >
       {props.children}
-      <ServerErrors
-        isEditingBegun={isEditingBegun}
-        place={name}
-        serverErrorText={serverErrorText}
-      />
       <button
         type="submit"
         form={`${name}`}
-        className={`form__btn-submit ${
+        className={`form__btn-submit form__btn-submit_type_${name} ${
           name === "edit-profile" && !isEditingBegun
             ? "form__btn-submit_hidden"
             : ""

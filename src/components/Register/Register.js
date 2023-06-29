@@ -1,5 +1,4 @@
 // IMPORT PACKAGES
-import { useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import useFormWithValidation from "../../hooks/useFormWithValidation";
 
@@ -13,20 +12,9 @@ import AuthScreen from "../AuthScreen/AuthScreen";
 import { USER_NAME_REG_EXP } from "../../utils/constants";
 
 // LOGIN COMPONENT
-function Registr({
-  onRegistr,
-  onLoading,
-  serverErrorText,
-  setServerErrorText,
-  loggedIn,
-}) {
+function Registr({ onRegistr, onLoading, loggedIn }) {
   // HOOKS
   const { values, errors, isFormValid, onChange } = useFormWithValidation();
-
-  // RESET SERVER ERRORS
-  useEffect(() => {
-    setServerErrorText("");
-  }, [setServerErrorText]);
 
   // HANDLER SUBMIT
   function handleSubmit(e) {
@@ -44,7 +32,6 @@ function Registr({
         onSubmit={handleSubmit}
         isFormValid={isFormValid}
         buttonText={onLoading ? "Регистрация..." : "Зарегистрироваться"}
-        serverErrorText={serverErrorText}
       >
         <label className="form__input-wrapper">
           Имя

@@ -16,13 +16,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { USER_NAME_REG_EXP } from "../../utils/constants";
 
 // PROFILE COMPONENT
-function Profile({
-  onUpdateUser,
-  onLogout,
-  onLoading,
-  serverErrorText,
-  setServerErrorText,
-}) {
+function Profile({ onUpdateUser, onLogout, onLoading }) {
   // HOOKS
   const currentUser = useContext(CurrentUserContext);
   const [isCurrentUser, setUserDifference] = useState(true);
@@ -41,11 +35,6 @@ function Profile({
   useEffect(() => {
     resetValidation(false, currentUser);
   }, [resetValidation, currentUser]);
-
-  // RESET SERVER ERRORS
-  useEffect(() => {
-    setServerErrorText("");
-  }, [setServerErrorText]);
 
   // HANDLER EDIT CLICK
   function handleEditClick() {
@@ -71,7 +60,6 @@ function Profile({
           isFormValid={isFormValid}
           isCurrentUser={isCurrentUser}
           buttonText={onLoading ? "Сохранение..." : "Сохранить"}
-          serverErrorText={serverErrorText}
           isEditingBegun={isEditingBegun}
         >
           <label className="form__input-wrapper form__input-wrapper_type_edit-profile">

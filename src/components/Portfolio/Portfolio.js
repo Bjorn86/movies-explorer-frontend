@@ -32,7 +32,7 @@ function Portfolio() {
         <li className="portfolio__list-item">
           <a
             className="portfolio__link hover-link"
-            href="https://mesto.ld-webdev.nomoredomains.monster/"
+            href="https://mesto.ld-webdev.ru/"
             target="_blank"
             rel="noreferrer"
           >

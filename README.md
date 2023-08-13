@@ -50,9 +50,8 @@
 ### Ссылки
 
 - [Ссылка на репозиторий проекта](https://github.com/Bjorn86/movies-explorer-frontend)
-- [Ссылка на страницу проекта](https://diplom.ld-webdev.nomoredomains.rocks/)
-- [Ссылка на API сервер проекта](https://api.diplom.ld-webdev.nomoredomains.rocks)
-- IP-адрес проекта: 51.250.11.115
+- [Ссылка на страницу проекта](https://movies.ld-webdev.ru/)
+- [Ссылка на API сервер проекта](https://api.movies.ld-webdev.ru)
 
 ## Ход выполнения проекта
 
